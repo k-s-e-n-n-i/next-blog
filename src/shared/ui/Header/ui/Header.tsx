@@ -1,11 +1,17 @@
 "use client";
 
-import { Flex, SegmentedControl } from "@radix-ui/themes";
+import { Button, Flex, SegmentedControl } from "@radix-ui/themes";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export const Header = () => {
   const path = usePathname();
+  const { data: session } = useSession();
+
+  const logout = () => {
+    signOut();
+  };
 
   return (
     <Flex gap="3" align="center" justify="between" p="16px 0">
@@ -20,6 +26,14 @@ export const Header = () => {
           <Link href="/admin">Админка</Link>
         </SegmentedControl.Item>
       </SegmentedControl.Root>
+
+      {session?.user ? (
+        <Button onClick={logout}>Выйти</Button>
+      ) : (
+        <Link href="/sign-in">
+          <Button>Войти</Button>
+        </Link>
+      )}
     </Flex>
   );
 };

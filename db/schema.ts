@@ -9,7 +9,7 @@ export const articlesTable = sqliteTable("articles_table", {
 
 export const usersTable = sqliteTable("users_table", {
   id: int().primaryKey({ autoIncrement: true }),
-  name: text().notNull(),
-  age: int().notNull(),
+  name: text(),
   email: text(),
+  password: text(),
 });

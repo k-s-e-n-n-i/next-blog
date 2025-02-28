@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Layout } from "@/entities/layout/ui/layout";
+import { Layout } from "@/entities/layout/ui";
 
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
