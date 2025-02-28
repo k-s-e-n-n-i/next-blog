@@ -1,0 +1,10 @@
+$offsetWidth: 200px;
+
+.wrapper {
+  display: grid;
+  grid-template-columns: $offsetWidth 1fr $offsetWidth;
+
+  > div {
+    grid-column: 2/3;
+  }
+}
