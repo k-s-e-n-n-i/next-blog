@@ -12,9 +12,10 @@ import { DeleteArticle } from "@/features/DeleteArticle";
 
 type Props = {
   articles: Article[];
+  userId?: string;
 };
 
-export const AdminContent = ({ articles }: Props) => {
+export const AdminContent = ({ articles, userId }: Props) => {
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
 
   const router = useRouter();
@@ -36,7 +37,7 @@ export const AdminContent = ({ articles }: Props) => {
         title="Создать статью"
         open={isOpenCreateModal}
         onOpenChange={setIsOpenCreateModal}
-        content={<CreateArticle onSubmit={onSubmitCreate} onCancel={closeCreateModal} />}
+        content={<CreateArticle userId={userId} onSubmit={onSubmitCreate} onCancel={closeCreateModal} />}
       >
         <Button>
           <PlusIcon /> Добавить статью
@@ -59,7 +60,7 @@ export const AdminContent = ({ articles }: Props) => {
               <Table.RowHeaderCell>{item.title}</Table.RowHeaderCell>
               <Table.Cell>{item.image ? <img src={item.image} /> : <span />}</Table.Cell>
               <Table.Cell>
-                <EditArticle defaultValues={item} />
+                <EditArticle defaultValues={{ ...item, authorId: userId }} />
               </Table.Cell>
               <Table.Cell>{item.id && <DeleteArticle id={item.id} title={item.title} />}</Table.Cell>
             </Table.Row>

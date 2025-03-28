@@ -1,10 +1,16 @@
-import NextAuth, { AuthOptions } from "next-auth";
+import NextAuth, { AuthOptions, Session } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { drizzle } from "drizzle-orm/libsql";
 
 import { usersTable } from "../../../../../db/schema";
 
 const db = drizzle(process.env.DB_FILE_NAME!);
+
+export type CustomSession = Session & {
+  user: Session["user"] & {
+    id?: string;
+  };
+};
 
 export const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
@@ -36,6 +42,12 @@ export const authOptions: AuthOptions = {
   ],
   pages: {
     signIn: "/sign-in",
+  },
+  callbacks: {
+    async session({ session, token }) {
+      const customSession: CustomSession = { ...session, user: { ...session.user, id: token.sub } };
+      return customSession;
+    },
   },
 };
 export const GET = NextAuth(authOptions);

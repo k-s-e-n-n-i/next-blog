@@ -6,13 +6,14 @@ import { articleSchema, ArticleValues } from "@/shared/types/Article";
 import { createArticleDB } from "../api/createArticle";
 
 type Props = {
+  userId?: string;
   onSubmit: () => void;
   onCancel: () => void;
 };
 
-export const CreateArticle = ({ onSubmit, onCancel }: Props) => {
+export const CreateArticle = ({ userId, onSubmit, onCancel }: Props) => {
   const { handleSubmit, control, reset } = useForm<ArticleValues>({
-    defaultValues: { title: "" },
+    defaultValues: { title: "", authorId: userId },
     resolver: zodResolver(articleSchema),
   });
 

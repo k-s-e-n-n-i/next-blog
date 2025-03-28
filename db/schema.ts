@@ -5,6 +5,7 @@ export const articlesTable = sqliteTable("articles_table", {
   title: text().notNull(),
   description: text(),
   image: text(),
+  authorId: text(),
 });
 
 export const usersTable = sqliteTable("users_table", {

@@ -5,6 +5,7 @@ export type Article = {
   title: string;
   description?: string | null;
   image?: string | null;
+  authorId?: string;
 };
 
 export const articleSchema = z.object({
@@ -14,6 +15,7 @@ export const articleSchema = z.object({
     .min(1, { message: "Поле обязательно для заполнения" }),
   description: z.string().nullable().optional(),
   image: z.string().nullable().optional(),
+  authorId: z.string(),
 });
 
 export type ArticleValues = z.infer<typeof articleSchema>;
