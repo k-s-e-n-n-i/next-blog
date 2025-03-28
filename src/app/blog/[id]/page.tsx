@@ -1,5 +1,5 @@
 import { ArticleView } from "@/_pages/ArticleView";
-import { getArticleDB } from "@/entities/blog/api/getArticle";
+import { getArticleDB } from "@/entities/blog";
 
 const ArticlePage = async ({ params }: { params: { id: number } }) => {
   const { id } = params;

@@ -9,7 +9,7 @@ export type Article = {
 };
 
 export const articleSchema = z.object({
-  id: z.number().optional(),
+  id: z.number(),
   title: z
     .string({ message: "Поле обязательно для заполнения" })
     .min(1, { message: "Поле обязательно для заполнения" }),

@@ -1,15 +1,14 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@radix-ui/themes";
 
 import { InputField } from "@/shared/ui/InputField";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { signInFormSchema, SignInFormValues } from "@/entities/user";
 
 import s from "./SignInForm.module.scss";
-
-import { signInFormSchema, SignInFormValues } from "../../model/types";
-import { Button } from "@radix-ui/themes";
-import { signIn } from "next-auth/react";
 
 export const SignInForm = () => {
   const { control, getValues } = useForm<SignInFormValues>({

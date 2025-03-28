@@ -1,10 +1,12 @@
+import { Role } from "@/shared/types/global";
 import { z } from "zod";
 
 export type User = {
   id: number;
-  name: string;
+  name?: string;
   email: string;
   password: string;
+  role: Role;
 };
 
 export const signInFormSchema = z.object({
@@ -29,3 +31,12 @@ export const signUpFormSchema = z.object({
 });
 
 export type SignUpFormValues = z.infer<typeof signUpFormSchema>;
+
+export const userSchema = z.object({
+  id: z.number(),
+  name: z.string().optional(),
+  email: z.string(),
+  role: z.enum(["moderator", "admin"]),
+});
+
+export type UserValues = z.infer<typeof userSchema>;

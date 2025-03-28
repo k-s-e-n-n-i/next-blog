@@ -1,5 +1,5 @@
 import { Blog } from "@/_pages/Blog";
-import { getArticlesDB } from "@/entities/blog/api/getArticles";
+import { getArticlesDB } from "@/entities/blog";
 
 const BlogPage = async () => {
   const articles = await getArticlesDB();

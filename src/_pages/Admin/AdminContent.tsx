@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Heading, Table } from "@radix-ui/themes";
+import { Box, Button, Table } from "@radix-ui/themes";
 import { Article } from "@/shared/types/Article";
 import { TriggerWithModal } from "@/shared/ui/TriggerWithModal";
 import { PlusIcon } from "@radix-ui/react-icons";
@@ -28,11 +28,7 @@ export const AdminContent = ({ articles, userId }: Props) => {
   };
 
   return (
-    <div>
-      <Heading as="h1" mt="3" mb="3" size="8">
-        Admin
-      </Heading>
-
+    <Box>
       <TriggerWithModal
         title="Создать статью"
         open={isOpenCreateModal}
@@ -67,6 +63,6 @@ export const AdminContent = ({ articles, userId }: Props) => {
           ))}
         </Table.Body>
       </Table.Root>
-    </div>
+    </Box>
   );
 };

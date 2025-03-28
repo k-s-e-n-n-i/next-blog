@@ -13,4 +13,5 @@ export const usersTable = sqliteTable("users_table", {
   name: text(),
   email: text(),
   password: text(),
+  role: text({ enum: ["moderator", "admin"] }),
 });
